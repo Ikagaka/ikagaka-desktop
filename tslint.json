@@ -7,8 +7,8 @@
         "curly": false,
         "only-arrow-functions": false,
         "typedef": false,
-        "no-unsafe-any": true,
-        "no-any": true,
+        "strict-boolean-expressions": false,
+        "no-unsafe-any": false,
         "no-void-expression": [
             true,
             "ignore-arrow-function-shorthand"
