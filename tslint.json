@@ -1,0 +1,27 @@
+{
+    "extends": [
+        "tslint:all"
+    ],
+    "rules": {
+        "member-access": false,
+        "curly": false,
+        "only-arrow-functions": false,
+        "typedef": false,
+        "no-unsafe-any": true,
+        "no-any": true,
+        "no-void-expression": [
+            true,
+            "ignore-arrow-function-shorthand"
+        ],
+        "comment-format": [
+            true,
+            "check-space"
+        ],
+        "completed-docs": false,
+        "no-inferred-empty-object-type": false,
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ]
+    }
+}
