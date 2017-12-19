@@ -10,5 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "electron": "^1.7.10"
+  },
+  "devDependencies": {
+    "electron-packager": "^10.1.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
   }
 }
