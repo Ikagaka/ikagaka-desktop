@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && shx cp src/*.html dist",
     "lint": "npm run lint:ts",
-    "lint:ts": "tslint -p ."
+    "lint:ts": "tslint -p .",
+    "dev": "cross-env ELECTRON_RELOAD=1 electron dist"
   },
   "author": "narazaka",
   "license": "MIT",
