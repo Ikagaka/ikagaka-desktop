@@ -109,6 +109,33 @@ npm run dev
 
 devのほうは閉じるボタンがないのでタスクバーアイコン右クリかAlt+F4で閉じて下さい。
 
-### License
+## 周辺ライブラリ
+
+[イカガカの要素技術（伺か Advent Calendar 2016）](http://narazaka.blog109.fc2.com/blog-entry-238.html) にまとめられている。
+
+ブラウザ動作でないので内必要なのは
+
+- シェル描画ライブラリ https://github.com/Ikagaka/cuttlebone （とりあえず現状一番動くものなのでこれを使う。API刷新したい箇所があったりWebGL使いたかったり。）
+- さくらスクリプトパーサー https://github.com/Ikagaka/sakurascript
+- さくらスクリプトをウェイト考慮して実行しイベントを飛ばす実行機 https://github.com/Ikagaka/sakurascript-executer.js
+- SHIORI 本物のDLLに繋ぐライブラリはない。作る必要あり。
+- SHIORIプロトコルパーサー/ビルダー https://github.com/Narazaka/shiorijk
+- SHIORI通信インターフェース https://github.com/Ikagaka/shiorif
+- SHIORI通信の2.x/3.x変換 https://github.com/Narazaka/shiori_transaction.js と https://github.com/Narazaka/shiori_converter.js の合わせ技
+- ファイルシステム操作関係（インストールとか含む） https://github.com/Ikagaka/NanikaStorage
+- 単体ゴーストの動作(materia相当) https://github.com/Ikagaka/ghost-kernel.js
+- 複数ゴーストの協調動作(SSP相当) なし 古いコードベースだと https://github.com/Ikagaka/NanikaManager だが、1から作った方が良さそうな出来。
+
+その他多分あまり表に出てこないが使うやつとしては
+
+- 単体ゴースト動作させるghost-kernel.jsが前提としているイベントルーターライブラリ https://github.com/Narazaka/lazy-event-router.js
+- タイマーイベント起こすやつ https://github.com/Ikagaka/ukagaka-timer-event-source.js
+- descript.txtとかのパーサー（型整備が途中） https://github.com/Ikagaka/ukagaka-install-descript-info.js cuttleboneはこれ使わず独自でパースしてます
+- narを解凍してNanikaStorageのインターフェースで使えるようにするやつ https://github.com/Ikagaka/NarLoader
+- ファイルシステムベースライブラリ（NanikaStorageが使ってる） https://github.com/Narazaka/fso
+
+これらを同時開発する仕組みとして`npm link`というのが存在するが、node_modulesがかぶったときに同じライブラリが二カ所から呼ばれて継承関係が上手く判定できなくなったりするのでどうすりゃいいかなあと思っている……。
+
+## License
 
 [MITライセンス](https://narazaka.net/license/MIT?2018)でリリースされています。
