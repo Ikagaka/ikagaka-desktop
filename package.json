@@ -9,6 +9,7 @@
     "lint": "npm run lint:ts",
     "lint:ts": "tslint -p .",
     "dev": "cross-env ELECTRON_RELOAD=1 electron dist",
+    "devw": "cross-env WINDOW_MODE=1 npm run dev",
     "prepare:example": "npm run prepare:example:ghost && npm run prepare:example:balloon",
     "prepare:example:ghost": "shx mkdir -p baseware/ghost && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/ikaga.nar -o ikaga.nar && unzip -o -d baseware/ghost/ikaga ikaga.nar && shx rm ikaga.nar",
     "prepare:example:balloon": "shx mkdir -p baseware/balloon && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/origin.nar -o origin.nar && unzip -o -d baseware/balloon/origin origin.nar && shx rm origin.nar"

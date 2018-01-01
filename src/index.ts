@@ -10,8 +10,18 @@ if (process.env.ELECTRON_RELOAD) {
 let mainWindow: BrowserWindow | undefined;
 
 app.on("ready", () => {
-    mainWindow = new BrowserWindow();
+    const options: Electron.BrowserWindowConstructorOptions =
+        process.env.WINDOW_MODE ?
+        {} :
+        {
+            frame: false,
+            transparent: true,
+        };
+    mainWindow = new BrowserWindow(options);
     mainWindow.setTitle("イカガカ");
+    if (!process.env.WINDOW_MODE) {
+        mainWindow.maximize();
+    }
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, "index.html"),
         protocol: "file:",
