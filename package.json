@@ -8,14 +8,23 @@
     "build": "tsc && shx cp src/*.html dist",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint -p .",
-    "dev": "cross-env ELECTRON_RELOAD=1 electron dist"
+    "dev": "cross-env ELECTRON_RELOAD=1 electron dist",
+    "prepare:example": "npm run prepare:example:ghost && npm run prepare:example:balloon",
+    "prepare:example:ghost": "shx mkdir -p baseware/ghost && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/ikaga.nar -o ikaga.nar && unzip -o -d baseware/ghost/ikaga ikaga.nar && shx rm ikaga.nar",
+    "prepare:example:balloon": "shx mkdir -p baseware/balloon && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/origin.nar -o origin.nar && unzip -o -d baseware/balloon/origin origin.nar && shx rm origin.nar"
   },
   "author": "narazaka",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.7.10"
+    "electron": "^1.7.10",
+    "encoding-japanese": "^1.0.26",
+    "ghost-kernel": "^5.0.9",
+    "nanika-storage": "^2.6.4",
+    "shiorif": "^2.1.0",
+    "ukagaka-timer-event-source": "^0.1.0"
   },
   "devDependencies": {
+    "@types/encoding-japanese": "^1.0.15",
     "cross-env": "^5.1.1",
     "electron-packager": "^10.1.0",
     "electron-reload": "^1.2.2",
