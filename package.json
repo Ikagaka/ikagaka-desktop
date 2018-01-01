@@ -17,6 +17,7 @@
   "author": "narazaka",
   "license": "MIT",
   "dependencies": {
+    "cuttlebone": "^0.2.7",
     "electron": "^1.7.10",
     "encoding-japanese": "^1.0.26",
     "ghost-kernel": "^5.0.9",
