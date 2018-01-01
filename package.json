@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && shx cp src/*.html dist",
+    "watchbuild": "tsc -w",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint -p .",
     "dev": "cross-env ELECTRON_RELOAD=1 electron dist",
