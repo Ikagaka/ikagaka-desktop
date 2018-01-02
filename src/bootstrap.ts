@@ -5,7 +5,7 @@ import { Shiorif } from "shiorif";
 import { TimerEventSource } from "ukagaka-timer-event-source";
 import { shiori } from "./dummy-shiori";
 
-document.addEventListener("DOMContentLoaded", async () => {
+export async function bootstrap() {
     /** ベースウェアルートディレクトリ */
     const nanikaStorage = new NanikaStorage("./baseware");
 
@@ -66,4 +66,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     ghostKernel.startBy.boot();
 
     (window as {} as {ghostKernel: {}}).ghostKernel = ghostKernel; // デバッグコンソールから触る用
-});
+
+    return ghostKernel;
+}

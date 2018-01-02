@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && shx cp src/*.html dist",
+    "build": "tsc && shx cp src/electron/*.html dist/electron",
     "watchbuild": "tsc -w",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint -p .",
-    "dev": "cross-env ELECTRON_RELOAD=1 electron dist",
+    "dev": "cross-env ELECTRON_RELOAD=1 electron dist/electron",
     "devw": "cross-env WINDOW_MODE=1 npm run dev",
     "prepare:example": "npm run prepare:example:ghost && npm run prepare:example:balloon",
     "prepare:example:ghost": "shx mkdir -p baseware/ghost && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/ikaga.nar -o ikaga.nar && unzip -o -d baseware/ghost/ikaga ikaga.nar && shx rm ikaga.nar",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "cuttlebone": "^0.2.7",
-    "electron": "^1.7.10",
+    "electron": "^1.8.2-beta.3",
     "encoding-japanese": "^1.0.26",
     "ghost-kernel": "^5.0.9",
     "nanika-storage": "^2.6.4",
