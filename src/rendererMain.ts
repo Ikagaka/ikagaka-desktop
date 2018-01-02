@@ -3,39 +3,16 @@ import { GhostKernel } from "ghost-kernel";
 import { NanikaStorage } from "nanika-storage";
 import { Shiorif } from "shiorif";
 import { TimerEventSource } from "ukagaka-timer-event-source";
+import { shiori } from "./dummy-shiori";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    /** ベースウェアルートディレクトリ */
     const nanikaStorage = new NanikaStorage("./baseware");
 
-    const shiori = {
-        async load() { return 1; },
-        async unload() { return 1; },
-        async request(req: string) {
-            // console.info(req);
-            let msg: string;
-            if (/GET Version|OnTranslate/.test(req)) {
-                msg = "SHIORI/3.0 400 Bad Request\r\n\r\n";
-            } else {
-                const reqstr = req.replace(/\\/g, "\\\\").replace(/\r/g, "\\r").replace(/\n/g, "\\\\n\\n");
-                msg = `SHIORI/3.0 200 OK\r\nValue: \\h\\s[0]\\_q${reqstr}\\_q\\u\\s[10]UNY\\e\r\n\r\n`;
-            }
-            // console.warn(msg);
-
-            return msg;
-        },
-    };
-
-    const shiorif = new Shiorif(shiori);
-
-    const nanikaGhostDirectory = nanikaStorage.ghost("ikaga");
-
-    const timerEventSource = new TimerEventSource();
-
-    const namedManager = new NamedManager();
-    document.body.appendChild(namedManager.element);
-
+    /** シェルディレクトリ */
     const nanikaShellDirectory = nanikaStorage.shell("ikaga", "master");
-    const cachedShellDirectory = await nanikaShellDirectory.toCached();
+    const cachedShellDirectory = await nanikaShellDirectory.toCached(); // 全ファイル読み込む
+    /** {"surface0.png": データのArrayBuffer, "surface1.png": ...} 的なハッシュ */
     const shellFiles: {[path: string]: ArrayBuffer} = {};
     for (const file of cachedShellDirectory.childrenAllSync()) {
         if (file.isFileSync()) {
@@ -43,9 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             shellFiles[relativePath] = file.readFileSync().buffer;
         }
     }
+    /** シェルオブジェクト */
     const shell = new Shell(shellFiles);
-    await shell.load();
+    await shell.load(); // ファイルデータをロードして透過かけたりする
 
+    /** バルーンディレクトリ */
     const nanikaBalloonDirectory = nanikaStorage.balloon("origin");
     const cachedBalloonDirectory = await nanikaBalloonDirectory.toCached();
     const balloonFiles: {[path: string]: ArrayBuffer} = {};
@@ -55,17 +34,36 @@ document.addEventListener("DOMContentLoaded", async () => {
             balloonFiles[relativePath] = file.readFileSync().buffer;
         }
     }
+    /** バルーンオブジェクト */
     const balloon = new Balloon(balloonFiles);
     await balloon.load();
 
+    /** シェル */
+    const namedManager = new NamedManager();
+    document.body.appendChild(namedManager.element); // DOMにアタッチ
+
+    // シェルとバルーンを指定してnamed（ゴースト）を立ち上げる
+    /** named（ゴースト） */
     const named = namedManager.materialize2(shell, balloon);
+    // スコープ0, 1とも非表示にシテオク
     named.scope(0).surface(-1);
     named.scope(0).blimp(-1);
     named.scope(1).surface(-1);
     named.scope(1).blimp(-1);
 
-    const gk = new GhostKernel([shiorif, nanikaStorage, nanikaGhostDirectory, timerEventSource, namedManager, named]);
-    gk.startBy.boot();
+    /** ゴーストディレクトリ */
+    const nanikaGhostDirectory = nanikaStorage.ghost("ikaga");
+    /** SHIORIインターフェース */
+    const shiorif = new Shiorif(shiori);
+    /** 時間イベントソース */
+    const timerEventSource = new TimerEventSource();
 
-    (window as {} as {gk: {}}).gk = gk;
+    /** ゴーストを動作させるベースウェアカーネル（カーネルとは……？） */
+    const ghostKernel = new GhostKernel(
+        [shiorif, nanikaStorage, nanikaGhostDirectory, timerEventSource, namedManager, named],
+    );
+    // OnBootで開始
+    ghostKernel.startBy.boot();
+
+    (window as {} as {ghostKernel: {}}).ghostKernel = ghostKernel; // デバッグコンソールから触る用
 });
