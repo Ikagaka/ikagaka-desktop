@@ -70,7 +70,7 @@ npm install
 
 ### 開発コマンド
 
-基本的に2窓開いて（VSCodeの下でもいける）、`npm run watchbuild`と`npm run devw`を実行しとくスタイルが便利。
+基本的に2窓開いて（VSCodeの下でもいける）、`npm run watchbuild`と`npm run ndevw`を実行しとくスタイルが便利。
 
 #### サンプルゴーストをダウンロード
 

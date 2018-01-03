@@ -7,7 +7,7 @@ export = function main(window: Window, nw: any) {
     const document = window.document;
 
     const win = nw.Window.get();
-    win.maximize();
+    if (nw.App.manifest.window.transparent) win.maximize();
 
     if (process.env.DEV) dev(window, nw);
 
