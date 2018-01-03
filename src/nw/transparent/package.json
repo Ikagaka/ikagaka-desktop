@@ -1,0 +1,14 @@
+{
+  "main": "index.html",
+  "name": "ikagaka",
+  "version": "0.1.0",
+  "window": {
+    "frame": false,
+    "transparent": true,
+    "always_on_top": true,
+    "resizable": false,
+    "width": 800,
+    "height": 600
+  },
+  "chromium-args": "--enable-transparent-visuals --disable-gpu --disable-gpu-compositing --force-cpu-draw"
+}

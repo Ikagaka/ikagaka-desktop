@@ -1,0 +1,9 @@
+{
+  "main": "index.html",
+  "name": "ikagaka",
+  "version": "0.1.0",
+  "window": {
+    "width": 800,
+    "height": 600
+  }
+}

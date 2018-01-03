@@ -100,11 +100,23 @@ npm run watchbuild
 #### 閲覧系
 
 ```bash
+# 開発用にNW.jsを立ち上げる（ファイルが更新あったら再読み込みする）
+npm run ndevw
+
+# 開発用にNW.jsを立ち上げる（上記に加えて背景透過＆ウインドウ枠非表示＆最大化でゴーストっぽくなる）
+npm run ndev
+
+# NW.jsを立ち上げる（更新トラッキングなし）
+npm run n
+
 # 開発用にElectronを立ち上げる（ファイルが更新あったら再読み込みする）
-npm run devw
+npm run edevw
 
 # 開発用にElectronを立ち上げる（上記に加えて背景透過＆ウインドウ枠非表示＆最大化でゴーストっぽくなる）
-npm run dev
+npm run edev
+
+# Electronを立ち上げる（更新トラッキングなし）
+npm run e
 ```
 
 devのほうは閉じるボタンがないのでタスクバーアイコン右クリかAlt+F4で閉じて下さい。

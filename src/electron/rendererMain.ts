@@ -5,7 +5,7 @@ import { bootstrap } from "../bootstrap";
 const win = remote.BrowserWindow.getFocusedWindow();
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const ghostKernel = await bootstrap();
+    const ghostKernel = await bootstrap("./baseware", document.body);
 
     // マウスイベント背景透過処理
     let inScopeCount = 0;

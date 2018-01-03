@@ -5,9 +5,9 @@ import { Shiorif } from "shiorif";
 import { TimerEventSource } from "ukagaka-timer-event-source";
 import { shiori } from "./dummy-shiori";
 
-export async function bootstrap() {
+export async function bootstrap(root: string, container: HTMLElement) {
     /** ベースウェアルートディレクトリ */
-    const nanikaStorage = new NanikaStorage("./baseware");
+    const nanikaStorage = new NanikaStorage(root);
 
     /** シェルディレクトリ */
     const nanikaShellDirectory = nanikaStorage.shell("ikaga", "master");
@@ -40,7 +40,7 @@ export async function bootstrap() {
 
     /** シェル */
     const namedManager = new NamedManager();
-    document.body.appendChild(namedManager.element); // DOMにアタッチ
+    container.appendChild(namedManager.element); // DOMにアタッチ
 
     // シェルとバルーンを指定してnamed（ゴースト）を立ち上げる
     /** named（ゴースト） */
