@@ -23,7 +23,7 @@ Webベースウェアとして登場したイカガカは、EmscriptenによるS
 
 - node.js 8+
 - TypeScript 2.6+
-- Electron
+- NW.jsまたはElectron
 - Visual Studio Code または Visual Studio (Community)
 
 複雑性を回避するため、Babelは使わずTypeScript一本で出来ることをし、またWebpack等のモジュールバンドラーは出来れば使わないで行きたい。
