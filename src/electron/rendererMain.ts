@@ -1,6 +1,6 @@
 import { Named } from "cuttlebone";
 import { remote } from "electron";
-import { bootstrap } from "../bootstrap";
+import { bootstrap } from "../nw/bootstrap";
 
 const win = remote.BrowserWindow.getFocusedWindow();
 

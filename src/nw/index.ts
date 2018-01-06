@@ -1,5 +1,5 @@
 // tslint:disable no-any no-console
-import { bootstrap } from "../bootstrap";
+import { bootstrap } from "./bootstrap";
 import { dev } from "./dev";
 
 declare var nw: any;
@@ -12,7 +12,7 @@ export = function main() {
 
     window.addEventListener("DOMContentLoaded", async () => {
         try {
-            const ghostKernel = await bootstrap("../../../baseware", document.body);
+            const ghostKernel = await bootstrap("../../baseware", document.body);
             console.log(ghostKernel);
         } catch (error) {
             console.error(error);
