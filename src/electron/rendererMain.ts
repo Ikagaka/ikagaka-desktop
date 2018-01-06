@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // マウスイベント背景透過処理
     let inScopeCount = 0;
     const changeScopeCount = (up: boolean) => {
-        console.error("ch", inScopeCount, up);
+        console.error("ch", inScopeCount, up); // tslint:disable-line no-console
         const prevInScope = inScopeCount !== 0;
         inScopeCount += up ? 1 : -1;
         const curInScope = inScopeCount !== 0;

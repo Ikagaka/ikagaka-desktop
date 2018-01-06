@@ -1,4 +1,4 @@
-// tslint:disable no-any no-implicit-dependencies
+// tslint:disable no-any no-implicit-dependencies no-console
 
 // from https://github.com/1j01/nw-dev
 
@@ -33,7 +33,7 @@ export function dev(window: Window, nw: any) {
     // reload
     window.addEventListener("keydown", function(event) {
         switch (event.key) {
-            case "F5": return window.location.reload();
+            case "F5": window.location.reload(); break;
             default: return;
         }
     });
