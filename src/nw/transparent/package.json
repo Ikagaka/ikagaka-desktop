@@ -10,5 +10,5 @@
     "width": 800,
     "height": 600
   },
-  "chromium-args": "--enable-transparent-visuals --disable-gpu --disable-gpu-compositing --force-cpu-draw"
+  "chromium-args": "--mixed-context --enable-transparent-visuals --disable-gpu --disable-gpu-compositing --force-cpu-draw"
 }

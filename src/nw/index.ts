@@ -1,11 +1,10 @@
-// tslint:disable no-any
+// tslint:disable no-any no-console
 import { bootstrap } from "../bootstrap";
 import { dev } from "./dev";
 
-export = function main(window: Window, nw: any) {
-    global.console = window.console;
-    const document = window.document;
+declare var nw: any;
 
+export = function main() {
     const win = nw.Window.get();
     if (nw.App.manifest.window.transparent) win.maximize();
 
