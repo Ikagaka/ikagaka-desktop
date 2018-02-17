@@ -45,6 +45,7 @@ export function dev(window: Window, nw: any) {
 
         // clear require cache
         for (const key of Object.keys(require.cache)) {
+            // tslint:disable-next-line no-dynamic-delete
             delete require.cache[key];
         }
 
