@@ -1,9 +1,31 @@
-import { Balloon, NamedManager, Shell } from "cuttlebone";
-import { GhostKernel } from "ghost-kernel";
+import { Balloon, Named, NamedManager, Shell } from "cuttlebone";
+import { GhostKernel, GhostKernelController, KernelPhase, routings } from "ghost-kernel";
+import { EventRoutes, EventRoutingDefiner } from "lazy-event-router";
 import { NanikaStorage } from "nanika-storage";
 import { Shiorif } from "shiorif";
 import { TimerEventSource } from "ukagaka-timer-event-source";
 import { shiori } from "./dummy-shiori";
+
+let namedManager: NamedManager;
+
+class CloseController extends GhostKernelController {
+    async closed() {
+      // TODO: 色々実装されてない
+      namedManager.vanish(this.kernel.component(Named).namedId);
+      this.kernel.unregisterComponent(Named);
+    }
+}
+
+const closeRouting: EventRoutingDefiner = (routes) => {
+    routes.from(KernelPhase, (r2) => {
+        // @ts-ignore
+        r2.controller(CloseController, (from, controller) => {
+            from.on("closed", controller.closed);
+        });
+    });
+};
+
+routings.push(closeRouting);
 
 export async function bootstrap(root: string, container: HTMLElement) {
     /** ベースウェアルートディレクトリ */
@@ -39,7 +61,7 @@ export async function bootstrap(root: string, container: HTMLElement) {
     await balloon.load();
 
     /** シェル */
-    const namedManager = new NamedManager();
+    namedManager = new NamedManager();
     container.appendChild(namedManager.element); // DOMにアタッチ
 
     // シェルとバルーンを指定してnamed（ゴースト）を立ち上げる
@@ -61,6 +83,7 @@ export async function bootstrap(root: string, container: HTMLElement) {
     /** ゴーストを動作させるベースウェアカーネル（カーネルとは……？） */
     const ghostKernel = new GhostKernel(
         [shiorif, nanikaStorage, nanikaGhostDirectory, timerEventSource, namedManager, named],
+        new EventRoutes(routings),
     );
     // OnBootで開始
     ghostKernel.startBy.boot();
