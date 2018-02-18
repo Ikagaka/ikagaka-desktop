@@ -34,6 +34,7 @@ export function dev(window: Window, nw: any) {
     window.addEventListener("keydown", function(event) {
         switch (event.key) {
             case "F5": window.location.reload(); break;
+            case "F12": win.showDevTools(); break;
             default: return;
         }
     });
