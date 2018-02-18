@@ -25,7 +25,7 @@ export const shiori = {
                 case "OnBoot": response.headers.header.Value = "\\h\\s[0]わたしです。\\u\\s[10]うにゅー。\\e"; break;
                 case "OnMouseDoubleClick":
                     // tslint:disable-next-line prefer-conditional-expression
-                    if (response.headers.Reference(3) === "0") {
+                    if (request.headers.Reference(3) === "0") {
                         response.headers.header.Value = "\\h\\s[0]つつきー\\e";
                     } else {
                         response.headers.header.Value = "\\u\\s[10]あいててー\\e";
