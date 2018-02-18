@@ -1,9 +1,26 @@
 import { Balloon, NamedManager, Shell } from "cuttlebone";
-import { GhostKernel } from "ghost-kernel";
+import { GhostKernel, GhostKernelController, KernelPhase, routings } from "ghost-kernel";
+import { EventRoutes } from "lazy-event-router";
 import { NanikaStorage } from "nanika-storage";
 import { Shiorif } from "shiorif";
 import { TimerEventSource } from "ukagaka-timer-event-source";
 import { shiori } from "./dummy-shiori";
+
+class HaltController extends GhostKernelController {
+    async halted() {
+        // とりあえずプロセス終了することで多少はそれっぽく
+        process.exit();
+    }
+}
+
+routings.push((routes) => {
+    routes.from(KernelPhase, (r2) => {
+        // @ts-ignore
+        r2.controller(HaltController, (from, controller) => {
+            from.on("halted", controller.halted);
+        });
+    });
+}); // なんちゃってDIの力を発揮
 
 export async function bootstrap(root: string, container: HTMLElement) {
     /** ベースウェアルートディレクトリ */
@@ -61,6 +78,7 @@ export async function bootstrap(root: string, container: HTMLElement) {
     /** ゴーストを動作させるベースウェアカーネル（カーネルとは……？） */
     const ghostKernel = new GhostKernel(
         [shiorif, nanikaStorage, nanikaGhostDirectory, timerEventSource, namedManager, named],
+        new EventRoutes(routings),
     );
     // OnBootで開始
     ghostKernel.startBy.boot();
