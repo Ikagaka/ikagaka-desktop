@@ -31,6 +31,7 @@ export const shiori = {
                         response.headers.header.Value = "\\u\\s[10]あいててー\\e";
                     }
                     break;
+                case "OnClose": response.headers.header.Value = "\\h\\s[0]さよなら。\\w9\\w9\\-"; break;
                 default: response.status_line.code = 204;
             }
         }
