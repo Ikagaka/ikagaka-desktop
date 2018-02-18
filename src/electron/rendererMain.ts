@@ -1,12 +1,13 @@
-import { Named } from "cuttlebone";
-import { remote } from "electron";
+// import { Named } from "cuttlebone";
+// import { remote } from "electron";
 import { bootstrap } from "../nw/bootstrap";
 
-const win = remote.BrowserWindow.getFocusedWindow();
+// const win = remote.BrowserWindow.getFocusedWindow();
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const ghostKernel = await bootstrap("./baseware", document.body);
+    /* const ghostKernel = */await bootstrap("./baseware", document.body);
 
+    /*
     // マウスイベント背景透過処理
     let inScopeCount = 0;
     const changeScopeCount = (up: boolean) => {
@@ -26,4 +27,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     scope1Element.addEventListener("mouseenter", () => changeScopeCount(true));
     scope1Element.addEventListener("mouseleave", () => changeScopeCount(false));
     (win.setIgnoreMouseEvents as any)(true, {forward: true}); // tslint:disable-line no-any
+    */
 });
