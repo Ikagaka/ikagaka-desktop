@@ -22,8 +22,9 @@
     "ndev": "cross-env DEV=1 nw dist/nw",
     "ndevw": "cross-env DEV=1 nw dist/nw-window",
     "prepare:example": "npm run prepare:example:ghost && npm run prepare:example:balloon",
-    "prepare:example:ghost": "shx mkdir -p baseware/ghost && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/ikaga.nar -o ikaga.nar && unzip -o -d baseware/ghost/ikaga ikaga.nar && shx rm ikaga.nar",
-    "prepare:example:balloon": "shx mkdir -p baseware/balloon && curl http://ikagaka.github.io/Ikagaka.demo/vendor/nar/origin.nar -o origin.nar && unzip -o -d baseware/balloon/origin origin.nar && shx rm origin.nar"
+    "prepare:example:ghost": "node scripts/installNar.js http://ikagaka.github.io/Ikagaka.demo/vendor/nar/ikaga.nar",
+    "prepare:example:balloon": "node scripts/installNar.js http://ikagaka.github.io/Ikagaka.demo/vendor/nar/origin.nar",
+    "clean:example": "shx rm -rf baseware"
   },
   "author": "narazaka",
   "license": "MIT",
@@ -43,6 +44,8 @@
     "cross-env": "^5.1.3",
     "electron-packager": "^10.1.0",
     "electron-reload": "^1.2.2",
+    "narloader": "^2.0.1",
+    "node-fetch": "^2.0.0",
     "nw": "^0.27.3",
     "nw-builder": "^3.5.1",
     "shx": "^0.2.2",
