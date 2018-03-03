@@ -37,7 +37,7 @@
     "cuttlebone": "^0.2.7",
     "electron": "^1.8.2",
     "encoding-japanese": "^1.0.26",
-    "ghost-kernel": "^5.0.9",
+    "ghost-kernel": "^5.0.10",
     "nanika-storage": "^3.0.0",
     "shiorif": "^2.1.4",
     "shiorijk": "^1.0.0",
