@@ -29,6 +29,10 @@
   },
   "author": "narazaka",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ikagaka/ikagaka-desktop.git"
+  },
   "dependencies": {
     "cuttlebone": "^0.2.7",
     "electron": "^1.8.2",
