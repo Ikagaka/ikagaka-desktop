@@ -4,6 +4,7 @@
   "description": "Ikagaka desktop app",
   "main": "index.js",
   "scripts": {
+    "prepare": "npm run build && npm run prepare:example",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:ts && npm run build:static",
     "build:ts": "tsc",
