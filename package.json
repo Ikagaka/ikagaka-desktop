@@ -22,7 +22,8 @@
     "n": "cross-env nw dist/nw",
     "ndev": "cross-env DEV=1 nw dist/nw",
     "ndevw": "cross-env DEV=1 nw dist/nw-window",
-    "prepare:example": "npm run prepare:example:ghost && npm run prepare:example:balloon",
+    "prepare:example": "npm run prepare:example:shiolink-adapter && npm run prepare:example:ghost && npm run prepare:example:balloon",
+    "prepare:example:shiolink-adapter": "node scripts/download-shiolink-adapter.js",
     "prepare:example:ghost": "node scripts/installNar.js http://ikagaka.github.io/Ikagaka.demo/vendor/nar/ikaga.nar",
     "prepare:example:balloon": "node scripts/installNar.js http://ikagaka.github.io/Ikagaka.demo/vendor/nar/origin.nar",
     "clean:example": "shx rm -rf baseware"
@@ -39,6 +40,8 @@
     "encoding-japanese": "^1.0.26",
     "ghost-kernel": "^5.0.12",
     "nanika-storage": "^3.0.0",
+    "shiolink-client": "^1.0.0",
+    "shiori-encode-layer": "^2.0.0",
     "shiorif": "^2.1.4",
     "shiorijk": "^1.0.0",
     "ukagaka-timer-event-source": "^0.2.0"
