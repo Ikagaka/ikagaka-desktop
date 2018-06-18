@@ -4,7 +4,7 @@ import { EventRoutes } from "lazy-event-router";
 import { NanikaStorage } from "nanika-storage";
 import { Shiorif } from "shiorif";
 import { TimerEventSource } from "ukagaka-timer-event-source";
-import { shiori } from "./dummy-shiori";
+import { genShiori } from "./shiori";
 
 class HaltController extends GhostKernelController {
     async halted() {
@@ -70,8 +70,24 @@ export async function bootstrap(root: string, container: HTMLElement) {
 
     /** ゴーストディレクトリ */
     const nanikaGhostDirectory = nanikaStorage.ghost("ikaga");
+    /** SHIORI */
+    const shiori = genShiori(
+        nanikaStorage.join("shiolink_adapter.exe").path,
+        nanikaStorage.ghostMaster("ikaga").join("shiori.dll").path,
+    );
     /** SHIORIインターフェース */
-    const shiorif = new Shiorif(shiori);
+    const shiorif = new Shiorif.Synchronized(shiori);
+    shiorif.constructor = Shiorif.prototype.constructor; // ghost-kernelがShiorif.Synchronizedをあつかわないので暫定パッチ
+    const req = shiorif.request;
+    shiorif.request = function(this: Shiorif, request: any, convert?: any) {
+        console.info(request.toString());
+        const res = req.call(this, request, convert);
+        res.then((res2: any) => console.info(res2.response.toString()));
+        return res;
+    };
+    const dirpath = nanikaStorage.ghostMaster("ikaga").realpathSync() + "\\";
+    const loadRes = await shiorif.load(dirpath);
+    console.info(dirpath, loadRes);
     /** 時間イベントソース */
     const timerEventSource = new TimerEventSource();
 
