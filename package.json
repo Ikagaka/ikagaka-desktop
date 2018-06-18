@@ -40,9 +40,9 @@
     "encoding-japanese": "^1.0.26",
     "ghost-kernel": "^5.0.12",
     "nanika-storage": "^3.0.0",
-    "shiolink-client": "^1.0.0",
+    "shiolink-client": "^1.0.1",
     "shiori-encode-layer": "^2.0.0",
-    "shiorif": "^2.1.4",
+    "shiorif": "^2.3.0",
     "shiorijk": "^1.0.0",
     "ukagaka-timer-event-source": "^0.2.0"
   },
