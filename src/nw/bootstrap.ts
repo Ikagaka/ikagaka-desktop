@@ -76,8 +76,7 @@ export async function bootstrap(root: string, container: HTMLElement) {
         nanikaStorage.ghostMaster("ikaga").join("shiori.dll").path,
     );
     /** SHIORIインターフェース */
-    const shiorif = new Shiorif.Synchronized(shiori);
-    shiorif.constructor = Shiorif.prototype.constructor; // ghost-kernelがShiorif.Synchronizedをあつかわないので暫定パッチ
+    const shiorif = new Shiorif(shiori, {synchronized: true});
     const req = shiorif.request;
     shiorif.request = function(this: Shiorif, request: any, convert?: any) {
         console.info(request.toString());
