@@ -55,7 +55,7 @@
     "electron-reload": "^1.2.2",
     "narloader": "^2.0.1",
     "node-fetch": "^2.0.0",
-    "nw": "^0.30.0",
+    "nw": "^0.45.5",
     "nw-builder": "^3.5.1",
     "shx": "^0.2.2",
     "tslint": "^5.9.1",
