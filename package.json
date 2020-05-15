@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "cuttlebone": "^0.2.7",
-    "electron": "^2.0.0",
+    "electron": "^8.3.0",
     "encoding-japanese": "^1.0.26",
     "ghost-kernel": "^5.0.13",
     "nanika-storage": "^3.0.0",
